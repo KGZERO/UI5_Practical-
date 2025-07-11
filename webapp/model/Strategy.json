@@ -1,0 +1,28 @@
+{
+    "Strategies": [
+        {
+            "strat_id": "SG001",
+            "strat_name": "Sustainable Growth"
+        },
+        {
+            "strat_id": "PE001",
+            "strat_name": "People Experience"
+        },
+        {
+            "strat_id": "IN001",
+            "strat_name": "Innovation"
+        },
+        {
+            "strat_id": "BO001",
+            "strat_name": "Business Operations"
+        },
+        {
+            "strat_id": "CD001",
+            "strat_name": "Capability Development"
+        },
+        {
+            "strat_id": "DE001",
+            "strat_name": "Delivery Excellence"
+        }
+    ]
+}

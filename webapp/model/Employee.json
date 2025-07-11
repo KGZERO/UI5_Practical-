@@ -1,0 +1,54 @@
+{
+    "Employees": [
+        {
+            "emp_ID": "10000001",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@dxc.com",
+            "phone_no": "09123456789",
+            "manager": "Jane Smith",
+            "subteam": "Development",
+            "strat_id": "SG001"
+        },
+        {
+            "emp_ID": "10000002",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "jane.smith@dxc.com",
+            "phone_no": "09123456780",
+            "manager": "Michael Brown",
+            "subteam": "Testing",
+            "strat_id": "PE001"
+        },
+        {
+            "emp_ID": "10000003",
+            "first_name": "Michael",
+            "last_name": "Brown",
+            "email": "michael.brown@dxc.com",
+            "phone_no": "09123456781",
+            "manager": "Sarah Johnson",
+            "subteam": "Management",
+            "strat_id": "IN001"
+        },
+        {
+            "emp_ID": "10000004",
+            "first_name": "Sarah",
+            "last_name": "Johnson",
+            "email": "sarah.johnson@dxc.com",
+            "phone_no": "09123456782",
+            "manager": "David Wilson",
+            "subteam": "Operations",
+            "strat_id": "BO001"
+        },
+        {
+            "emp_ID": "10000005",
+            "first_name": "David",
+            "last_name": "Wilson",
+            "email": "david.wilson@dxc.com",
+            "phone_no": "09123456783",
+            "manager": "Lisa Davis",
+            "subteam": "Support",
+            "strat_id": "CD001"
+        }
+    ]
+}

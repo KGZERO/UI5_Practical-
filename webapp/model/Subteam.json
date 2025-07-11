@@ -1,0 +1,24 @@
+{
+    "subteams": [
+        {
+            "key": "dev",
+            "text": "Development"
+        },
+        {
+            "key": "qa",
+            "text": "Quality Assurance"
+        },
+        {
+            "key": "hr",
+            "text": "Human Resources"
+        },
+        {
+            "key": "finance",
+            "text": "Finance"
+        },
+        {
+            "key": "marketing",
+            "text": "Marketing"
+        }
+    ]
+}

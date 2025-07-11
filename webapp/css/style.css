@@ -1,0 +1,24 @@
+/* Add any custom styles here */
+.sapMListTblHeaderCell {
+    font-weight: bold;
+}
+
+.sapMListTblCell {
+    vertical-align: middle;
+}
+
+/* Make dialog forms more compact */
+.sapUiSizeCompact .sapMDialog .sapUiForm .sapUiFormContainer {
+    padding: 0.5rem;
+}
+
+/* Trong file CSS của bạn
+.sapMDialog.sapMModalDialog {
+    opacity: 1 !important;
+    /* Đảm bảo dialog hiển thị */
+/* pointer-events: auto !important;
+}
+
+.sapMDialogBlockLayer {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+} */

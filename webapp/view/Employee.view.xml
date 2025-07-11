@@ -1,0 +1,113 @@
+<mvc:View
+    controllerName="com.dxc.strategy.registration.controller.Employee"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    displayBlock="true"
+>
+    <Page
+        id="employeePage"
+        title="{strategy>/strat_name}"
+        binding="{strategy>/}"
+        showHeader="true"
+    >
+        <headerContent>
+            <!-- <Button
+                icon="sap-icon://role"
+                tooltip="{i18n>changeRole}"
+                press=".showRoleSelectionDialog"
+            /> -->
+            <Button
+                icon="sap-icon://excel-attachment"
+                tooltip="{i18n>exportToExcel}"
+                press=".onExport"
+            />
+        </headerContent>
+        <content>
+            <Table
+                id="employeesTable"
+                items="{
+          path: 'employee>/Employees'
+   
+        }"
+                mode="{= ${role>/editable} ? 'MultiSelect' : 'None' }"
+                growing="true"
+                growingThreshold="10"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>employeesList}" />
+                        <ToolbarSpacer />
+                        <SearchField
+                            id="searchField"
+                            width="20rem"
+                            placeholder="{i18n>search}"
+                            search=".onSearch"
+                            liveChange=".onSearch"
+                        />
+                        <Button
+                            icon="sap-icon://add"
+                            tooltip="{i18n>addEmployee}"
+                            press=".onAddEmployee"
+                        />
+                        <Button
+                            icon="sap-icon://delete"
+                            tooltip="{i18n>deleteEmployee}"
+                            press=".onDeleteEmployee"
+                            visible="{role>/editable}"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="8em">
+                        <Text text="{i18n>empId}" />
+                    </Column>
+                    <Column width="10em">
+                        <Text text="{i18n>firstName}" />
+                    </Column>
+                    <Column width="10em">
+                        <Text text="{i18n>lastName}" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="{i18n>email}" />
+                    </Column>
+                    <Column width="8em">
+                        <Text text="{i18n>phone}" />
+                    </Column>
+                    <Column width="10em">
+                        <Text text="{i18n>manager}" />
+                    </Column>
+                    <Column width="8em">
+                        <Text text="{i18n>subteam}" />
+                    </Column>
+                    <Column
+                        width="4em"
+                        visible="{role>/editable}"
+                    >
+                        <Text text="{i18n>actions}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{employee>emp_ID}" />
+                            <Text text="{employee>first_name}" />
+                            <Text text="{employee>last_name}" />
+                            <Text text="{employee>email}" />
+                            <Text text="{employee>phone_no}" />
+                            <Text text="{employee>manager}" />
+                            <Text text="{employee>subteam}" />
+                            <Button
+                                icon="sap-icon://edit"
+                                tooltip="{i18n>editEmployee}"
+                                press=".onEditEmployee"
+                                visible="{role>/editable}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

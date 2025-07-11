@@ -1,0 +1,108 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.dxc.strategy.registration",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "employeeService": {
+                "uri": "model/Employee.json",
+                "type": "JSON"
+            },
+            "strategyService": {
+                "uri": "model/Strategy.json",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.dxc.strategy.registration.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "employee": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "employeeService"
+            },
+            "strategy": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "strategyService"
+            }
+        },
+        "routing": {
+            "componentUsages": {
+                "noPreload": {
+                    "name": "com.dxc.strategy.registration",
+                    "settings": {},
+                    "lazy": true
+                }
+            },
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.dxc.strategy.registration.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "name": "overview",
+                    "pattern": "",
+                    "target": "overview"
+                },
+                {
+                    "name": "employee",
+                    "pattern": "employee/{stratId}",
+                    "target": "employee"
+                }
+            ],
+            "targets": {
+                "overview": {
+                    "viewName": "Overview",
+                    "viewLevel": 1
+                },
+                "employee": {
+                    "viewName": "Employee",
+                    "viewLevel": 2
+                }
+            }
+        }
+    }
+}

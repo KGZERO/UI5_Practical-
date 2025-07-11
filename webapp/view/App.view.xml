@@ -1,0 +1,20 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    controllerName="com.dxc.strategy.registration.controller.App"
+    displayBlock="true"
+    height="100%"
+    id="appView"
+>
+    <App id="app">
+        <pages>
+            <Page
+                id="page"
+                showHeader="false"
+            >
+                <content />
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

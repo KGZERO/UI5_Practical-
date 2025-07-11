@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="RoleDialog"
+        title="Select Your Role"
+        stretch="false"
+        contentWidth="300px"
+    >
+        <content>
+            <Select
+                id="selectedItem"
+                forceSelection="false"
+                selectedKey="{role>/role}"
+                items="{
+
+                    path: 'role>/roles'
+
+                }"
+            >
+                <core:Item
+                    key="{role>key}"
+                    text="{role>text}"
+                />
+            </Select>
+        </content>
+        <buttons>
+            <Button
+                text="Confirm"
+                type="Emphasized"
+                press=".onRoleSelect"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,39 @@
+{
+  "name": "com.dxc.strategy.registration",
+  "version": "0.0.1",
+  "description": "SAPUI5 application for employee strategy registration",
+  "private": true,
+  "scripts": {
+    "lint": "eslint webapp",
+    "start_old": "ui5 serve",
+    "build_old": "ui5 build",
+    "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#app-tile\"",
+    "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\"",
+    "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
+    "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
+    "build": "ui5 build -a --clean-dest --include-task=generateCachebusterInfo",
+    "deploy": "fiori verify",
+    "deploy-config": "fiori add deploy-config",
+    "start-mock": "fiori run --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\""
+  },
+  "dependencies": {
+    "@openui5/sap.m": "1.71.0",
+    "@openui5/sap.ui.core": "1.71.0",
+    "@openui5/sap.ui.layout": "1.71.0",
+    "@openui5/themelib_sap_fiori_3": "1.71.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "ui5-middleware-livereload": "^0.5.0",
+    "@ui5/cli": "^3.0.0",
+    "@sap/ux-ui5-tooling": "1",
+    "rimraf": "3.0.2"
+  },
+  "sapuxLayer": "CUSTOMER_BASE",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html"
+}

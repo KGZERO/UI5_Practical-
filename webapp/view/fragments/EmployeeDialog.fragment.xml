@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        id="employeeDialog"
+        title="{= ${form>/editMode} ? ${i18n>editEmployee} : ${i18n>addEmployee} }"
+        class="sapUiContentPadding"
+        contentWidth="30rem"
+    >
+        <content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+            >
+                <f:content>
+                    <Label
+                        text="{i18n>empId}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/emp_ID}"
+                        enabled="{= !${form>/editMode} }"
+                        maxLength="8"
+                        liveChange=".onEmpIdLiveChange"
+                    />
+                    <Label
+                        text="{i18n>firstName}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/first_name}"
+                        maxLength="50"
+                        liveChange=".onNameLiveChange"
+                    />
+                    <Label
+                        text="{i18n>lastName}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/last_name}"
+                        maxLength="50"
+                        liveChange=".onNameLiveChange"
+                    />
+                    <Label
+                        text="{i18n>email}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/email}"
+                        maxLength="50"
+                    />
+                    <Label
+                        text="{i18n>phone}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/phone_no}"
+                        maxLength="11"
+                        liveChange=".onPhoneLiveChange"
+                    />
+                    <Label
+                        text="{i18n>manager}"
+                        required="true"
+                    />
+                    <Input
+                        value="{form>/employee/manager}"
+                        maxLength="50"
+                        liveChange=".onNameLiveChange"
+                    />
+                    <Label
+                        text="{i18n>subteam}"
+                        required="true"
+                    />
+                    <!-- <Input
+                        value="{form>/employee/subteam}"
+                        maxLength="50"
+                        liveChange=".onSubteamLiveChange"
+                    /> -->
+
+                    <Select
+                        id="subteamSelect"
+                        selectedKey="{form>/employee/subteam}"
+                        items="{
+              path: 'subteam>/subteams'
+             
+            }"
+                    >
+                        <core:Item
+                            key="{subteam>key}"
+                            text="{subteam>text}"
+                        />
+                    </Select>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button
+                text="{i18n>save}"
+                type="Emphasized"
+                press=".onSaveEmployee"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="{i18n>cancel}"
+                press=".onCancelEmployee"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
