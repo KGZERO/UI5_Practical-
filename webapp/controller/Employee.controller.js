@@ -4,19 +4,18 @@ sap.ui.define([
     "sap/m/MessageBox",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"],
-    function (Controller, JSONModel, MessageBox, MessageToast) {
+    "sap/ui/model/FilterOperator",
+    ],
+    function (Controller, JSONModel, MessageBox, MessageToast,Filter,FilterOperator) {
         "use strict";
         return Controller.extend("com.dxc.strategy.registration.controller.Employee", {
             onInit: function () {
-                this._oRouter = this.getOwnerComponent().getRouter(); 
-                this._oRouter.getRoute("employee").attachPatternMatched(this._onRouteMatched, this);
+                this._oRouter = this.getOwnerComponent().getRouter(); this._oRouter.getRoute("employee").attachPatternMatched(this._onRouteMatched, this);
                 // Set up form model
-                var oFormModel = new JSONModel({ editMode: false, employee: { emp_ID: "", first_name: "", last_name: "", email: "", phone_no: "", manager: "", subteam: "", strat_id: "" } }); 
+                var oFormModel = new JSONModel({ editMode: false, employee: { emp_ID: "", first_name: "", last_name: "", email: "", phone_no: "", manager: "", subteam: "Development", strat_id: "SG001" } }); 
                 this.getView().setModel(oFormModel, "form");
                 // Set up table model
-                var oTableModel = new JSONModel({ searchQuery: "" }); 
-                this.getView().setModel(oTableModel, "table");
+                var oTableModel = new JSONModel({ searchQuery: "" }); this.getView().setModel(oTableModel, "table");
 
                 console.log("search :", oTableModel.getData());// set up subteam
                 var oSubteamModel = new JSONModel({
@@ -31,9 +30,18 @@ sap.ui.define([
                 this.getView().setModel(oSubteamModel, "subteam");
                 // Debug log
                 console.log("Subteam model initialized:", oSubteamModel.getData());
-            }, _onRouteMatched: function (oEvent) { this._sStratId = oEvent.getParameter("arguments").stratId; 
+            },
+             _onRouteMatched: function (oEvent) { this._sStratId = oEvent.getParameter("arguments").stratId; 
+                console.log("sStrategy", this._sStratId);
+                const oTable = this.byId('employeesTable') ;
+		        const oBinding = oTable?.getBinding('items') ;
+		        oBinding?.filter([
+			    new Filter('strat_id', FilterOperator.EQ, this._sStratId),
+			
+		]);
                 this._bindView(); 
-            }, _bindView: function () {
+            }, 
+            _bindView: function () {
                 var oView = this.getView();
                 var oStrategyModel = this.getOwnerComponent().getModel("strategy");
 
@@ -43,6 +51,12 @@ sap.ui.define([
                     model: "strategy",
                     events: { change: this._onStrategyBindingChange.bind(this) }
                 });
+                // console.log("oview", oView.bindElement({
+                //     path: "/Strategies/" + this._sStratId,
+                //     model: "strategy",
+                //     events: { change: this._onStrategyBindingChange.bind(this) }
+                // }));
+                
             },
 
 
@@ -71,8 +85,13 @@ sap.ui.define([
                 }
 
             }, onAddEmployee: function () {
-                var oFormModel = this.getView().getModel("form"); oFormModel.setProperty("/editMode", false); oFormModel.setProperty("/employee", {
-                    emp_ID: "", first_name: "", last_name: "", email: "", phone_no: "", manager: "", subteam: "", strat_id: this._sStratId
+                console.log("strategy", this._sStratId );
+                
+                var oFormModel = this.getView().getModel("form");
+                 oFormModel.setProperty("/editMode", false); 
+                 oFormModel.setProperty("/employee", {
+                    emp_ID: "", first_name: "", last_name: "", email: "", phone_no: "", manager: "", subteam: "Development", strat_id: this._sStratId
+
                 }); this._showEmployeeDialog();
             },
 
@@ -116,6 +135,7 @@ sap.ui.define([
             onSaveEmployee: function () {
                 var oFormModel = this.getView().getModel("form");
                 var oEmployee = oFormModel.getProperty("/employee");
+
                 if (!this._validateEmployee(oEmployee)) { return; }
                 MessageBox.confirm(this.getView().getModel("i18n").getProperty("confirmSave"),
                     {
@@ -219,6 +239,8 @@ sap.ui.define([
             _saveEmployee: function (oEmployee, bEditMode) {
                 var oEmployeeModel = this.getOwnerComponent().getModel("employee");
                 var aEmployees = oEmployeeModel.getProperty("/Employees");
+                console.log("employee before if ", oEmployee );
+                
                 if (bEditMode) {
                     // Update existing employee
                     var nIndex = aEmployees.findIndex(function (oEmp) {
@@ -277,7 +299,8 @@ sap.ui.define([
                 console.log("Search applied:", sQuery, "Filters:", aFilters);
 
             }, onExport: function () {
-                var oTable = this.byId("employeesTable"); var aColumns = oTable.getColumns();
+                var oTable = this.byId("employeesTable"); 
+                var aColumns = oTable.getColumns();
                 var aItems = oTable.getItems();
                 var csvContent = "data:text/csv;charset=utf-8,";
                 // Add headers

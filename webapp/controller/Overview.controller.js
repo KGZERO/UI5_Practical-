@@ -18,8 +18,10 @@ sap.ui.define([
                 var oStrategyModel = this.getOwnerComponent().getModel("strategy");
                 oView.bindElement({ path: "/Strategies", model: "strategy" });
             }, onStrategyPress: function (oEvent) {
-                var oItem = oEvent.getSource(); var sStratId = oItem.getBindingContext("strategy").getProperty("strat_id"); this._oRouter.navTo("employee", {
-                    stratId: sStratId
+                var oItem = oEvent.getSource(); 
+                var sStratId = oItem.getBindingContext("strategy").getProperty("strat_id"); 
+                this._oRouter.navTo("employee", {
+                   stratId:  sStratId
                 });
             }, onSearch: function (oEvent) { var sQuery = oEvent.getParameter("query"); this.getView().getModel("table").setProperty("/searchQuery", sQuery); }, onExport: function () {
                 var oTable = this.byId("strategiesTable"); var aColumns = oTable.getColumns(); var aItems = oTable.getItems(); var csvContent = "data:text/csv;charset=utf-8,";
